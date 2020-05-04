@@ -7,7 +7,7 @@ SUCCESS=false
 echo "checking if image has been updated..."
 
 for i in [1..10]; do
-    if argocd --server $ARGO_SERVER --auth-token $ARGO_TOKEN app manifests $APPLICATION | grep -q $IMAGE; then
+    if argocd --server $ARGO_SERVER --auth-token $ARGO_TOKEN app manifests $1 | grep -q $2; then
         UPDATED=true 
         echo "Image updated!"
         break
@@ -18,7 +18,7 @@ done
 if [ $UPDATED == "true" ]; then
     echo "checking deployment success in general..."
     for i in [1..10]; do
-        if argocd --server $ARGO_SERVER --auth-token $ARGO_TOKEN app wait $APPLICATION --timeout 5; then
+        if argocd --server $ARGO_SERVER --auth-token $ARGO_TOKEN app wait $1 --timeout 5; then
             echo "deploy succeeded!"
             SUCCESS=true 
             break
