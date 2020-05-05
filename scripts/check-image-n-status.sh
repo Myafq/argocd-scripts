@@ -11,11 +11,11 @@ fi
 
 for i in $(seq 1 10); do
     if argocd --server $ARGO_SERVER --auth-token $ARGO_TOKEN app manifests $1 | grep -q $2; then
-        UPDATED=true 
+        UPDATED="true"
         echo "Image updated!"
         break
     fi
-    sleep 5
+    sleep $(expr 5 \* $i)
 done
 
 if [ $UPDATED == "true" ]; then
@@ -23,10 +23,10 @@ if [ $UPDATED == "true" ]; then
     for i in $(seq 1 10); do
         if argocd --server $ARGO_SERVER --auth-token $ARGO_TOKEN app wait $1 --timeout 5; then
             echo "deploy succeeded!"
-            SUCCESS=true 
+            SUCCESS="true" 
             break
         fi
-        sleep 5
+        sleep $(expr 5 \* $i)
     done
 fi 
 
