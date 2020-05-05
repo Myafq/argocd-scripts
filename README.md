@@ -1,6 +1,6 @@
 Repository for argo-scripts images, intended for ci/cd pipelines
 
-##check-image-n-status.sh
+## check-image-n-status.sh
 Expected env variables:
 ARGO_SERVER - hostname for grpc endpoint of argocd
 ARGO_TOKEN - argocd api token
