@@ -1,5 +1,6 @@
 Repository for argo-scripts images, intended for ci/cd pipelines
 
+# quay.io/myafk/argocd-scripts
 ## check-image-n-status.sh
 Expected env variables:
 ARGO_SERVER - hostname for grpc endpoint of argocd
